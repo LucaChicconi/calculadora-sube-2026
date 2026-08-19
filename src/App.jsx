@@ -608,19 +608,19 @@ function App() {
                 <div className="grid grid-cols-3 gap-3">
                   <div className="bg-white rounded-lg p-3 text-center">
                     <p className="text-xs text-[#2D2D2D]/60 uppercase tracking-wider mb-1">Diario</p>
-                    <p className="text-lg font-bold text-[#E31E24]">
+                    <p className="text-base font-bold text-[#E31E24]">
                       ${result.daily.toLocaleString('es-AR')}
                     </p>
                   </div>
                   <div className="bg-white rounded-lg p-3 text-center">
                     <p className="text-xs text-[#2D2D2D]/60 uppercase tracking-wider mb-1">Semanal</p>
-                    <p className="text-lg font-bold text-[#E31E24]">
+                    <p className="text-base font-bold text-[#E31E24]">
                       ${result.weekly.toLocaleString('es-AR')}
                     </p>
                   </div>
                   <div className="bg-white rounded-lg p-3 text-center">
                     <p className="text-xs text-[#2D2D2D]/60 uppercase tracking-wider mb-1">Mensual</p>
-                    <p className="text-lg font-bold text-[#E31E24]">
+                    <p className="text-base font-bold text-[#E31E24]">
                       ${result.monthly.toLocaleString('es-AR')}
                     </p>
                   </div>
@@ -659,10 +659,10 @@ function App() {
                         />
                       </div>
                       <p className="text-sm font-bold text-[#2D2D2D] mt-3">
-                        ¿Te acordás <span className="text-[#E31E24]">2024</span>? El café con dos medialunas más barato de la Ciudad valía <span className="text-[#E31E24]">$150</span> pesos.
+                        ¿Te acordás <span className="text-[#E31E24]">2024</span>? <span className="font-italic">El café con dos medialunas más barato de la Ciudad</span>™ valía <span className="text-[#E31E24]">$150</span> pesos.
                       </p>
                       <p className="text-sm text-[#2D2D2D] mt-1">
-                        En <span className="text-[#E31E24] font-bold">2026</span> el café con dos medialunas más barato lo encontrás en el mismo lugar, vale <span className="font-bold">$1200</span> y podés comprar <span className="font-bold text-[#E31E24] text-base">{Math.floor(result.monthly / 1200)} cafés con {Math.floor(result.monthly / 1200) * 2} medialunas</span> con lo que gastás en transporte a la facu!
+                        En <span className="text-[#E31E24] font-bold">2026</span> <span className="font-italic">El café con dos medialunas más barato de la Ciudad</span>™lo encontrás en el mismo lugar, vale <span className="font-bold">$1200</span> y podés comprar <span className="font-bold text-[#E31E24] text-base">{Math.floor(result.monthly / 1200)} cafés con {Math.floor(result.monthly / 1200) * 2} medialunas</span> con lo que gastás en transporte a la facu!
                       </p>
                     </div>
                   </div>
@@ -671,6 +671,9 @@ function App() {
             </div>
           )}
         </div>
+        <p className="text-center text-xs text-white/40 py-3">
+          ©2026 - Todos los derechos reservados
+        </p>
       </div>
     </div>
   )
