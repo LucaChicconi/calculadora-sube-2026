@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import icono from './assets/img/icono.png'
-import html2canvas from 'html2canvas'
+import domtoimage from 'dom-to-image'
 
 const WEEKS_PER_MONTH = 4.33
 const MINIMUM_SALARY = 372400
@@ -302,29 +302,27 @@ function App() {
     })
   }
 
-  const shareCard = async () => {
-    const card = document.getElementById('share-card')
-    if (!card) return
-    try {
-      const canvas = await html2canvas(card, {
-        backgroundColor: '#ffffff',
-        scale: 2
+const shareCard = async () => {
+  const card = document.getElementById('share-card')
+  if (!card) return
+  try {
+    const dataUrl = await domtoimage.toPng(card, {
+      backgroundColor: '#ffffff',
+      pixelRatio: 2
+    })
+    const blob = await (await fetch(dataUrl)).blob()
+    if (blob && navigator.share) {
+      const file = new File([blob], 'costo-cursada.png', { type: 'image/png' })
+      await navigator.share({
+        files: [file],
+        title: 'Costo de cursada',
+        text: 'Cada vez cuesta más cursar'
       })
-      canvas.toBlob(async (blob) => {
-        if (blob && navigator.share) {
-          const file = new File([blob], 'costo-cursada.png', { type: 'image/png' })
-          await navigator.share({
-            files: [file],
-            title: 'Costo de cursada',
-            text: 'Cada vez cuesta más cursar'
-          })
-        }
-      })
-    } catch (err) {
-      console.error('Error sharing:', err)
     }
+  } catch (err) {
+    console.error('Error sharing:', err)
   }
-
+}
   const isValid = legs.every(leg => {
     if (!leg.type || !leg.line) return false
     if (leg.type === 'subte') return true
