@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import './App.css'
 import icono from './assets/img/icono.png'
-import domtoimage from 'dom-to-image'
 
 const WEEKS_PER_MONTH = 4.33
 const MINIMUM_SALARY = 372400
@@ -302,27 +301,7 @@ function App() {
     })
   }
 
-const shareCard = async () => {
-  const card = document.getElementById('share-card')
-  if (!card) return
-  try {
-    const dataUrl = await domtoimage.toPng(card, {
-      backgroundColor: '#ffffff',
-      pixelRatio: 2
-    })
-    const blob = await (await fetch(dataUrl)).blob()
-    if (blob && navigator.share) {
-      const file = new File([blob], 'costo-cursada.png', { type: 'image/png' })
-      await navigator.share({
-        files: [file],
-        title: 'Costo de cursada',
-        text: 'Cada vez cuesta más cursar'
-      })
-    }
-  } catch (err) {
-    console.error('Error sharing:', err)
-  }
-}
+
   const isValid = legs.every(leg => {
     if (!leg.type || !leg.line) return false
     if (leg.type === 'subte') return true
@@ -686,13 +665,6 @@ const shareCard = async () => {
                         En <span className="text-[#E31E24] font-bold">2026</span> el café con dos medialunas más barato lo encontrás en el mismo lugar, vale <span className="font-bold">$1200</span> y podés comprar <span className="font-bold text-[#E31E24] text-base">{Math.floor(result.monthly / 1200)} cafés con {Math.floor(result.monthly / 1200) * 2} medialunas</span> con lo que gastás en transporte a la facu!
                       </p>
                     </div>
-                    <button
-                      type="button"
-                      onClick={shareCard}
-                      className="w-full mt-4 py-3 rounded-lg font-bold text-sm bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white hover:opacity-90 transition-opacity"
-                    >
-                      📸 Compartir en Instagram
-                    </button>
                   </div>
                 </div>
               </div>
